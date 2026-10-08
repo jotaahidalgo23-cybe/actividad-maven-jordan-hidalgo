@@ -17,6 +17,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
 public class Shop {
 	private static final Scanner CONSOLE = new Scanner(System.in);
 	private Amount cash = new Amount(100.00);
