@@ -128,6 +128,7 @@ public class Shop {
 			System.out.println("11) Sortir del programa");
 			System.out.print("Seleccioneu una opció: ");
 			opcion = scanner.nextInt();
+			
 
 			switch (opcion) {
 			case 1:
