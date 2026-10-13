@@ -17,7 +17,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
 public class Shop {
 	private static final Scanner CONSOLE = new Scanner(System.in);
 	private Amount cash = new Amount(100.00);
@@ -129,7 +128,6 @@ public class Shop {
 			System.out.println("11) Sortir del programa");
 			System.out.print("Seleccioneu una opció: ");
 			opcion = scanner.nextInt();
-			
 
 			switch (opcion) {
 			case 1:
