@@ -1,5 +1,5 @@
-package main;
-
+package main; 
+ // Commit de preparació
 import model.Product;
 import model.Sale;
 import model.Amount;
@@ -21,7 +21,7 @@ public class Shop {
 	private static final Scanner CONSOLE = new Scanner(System.in);
 	private Amount cash = new Amount(100.00);
 //	private Product[] inventory;
-	private ArrayList<Product> inventory;
+	private ArrayList<Product> inventory; 
 	private int numberProducts;
 //	private Sale[] sales;
 	private ArrayList<Sale> sales;
@@ -226,7 +226,7 @@ public class Shop {
 		try {
 			BufferedReader bf = new BufferedReader(new FileReader(f));
 			String Linea = "";
-			while(Linea = bf.readLine() != null)
+			// while(Linea = bf.readLine() != null)
 			{
 				
 			}
@@ -512,4 +512,4 @@ public class Shop {
 
 	}
 
-}
+}// Prova de Git 
