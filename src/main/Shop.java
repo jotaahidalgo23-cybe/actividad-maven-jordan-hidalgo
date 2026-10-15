@@ -1,5 +1,6 @@
 package main; 
  // Commit de preparació
+
 import model.Product;
 import model.Sale;
 import model.Amount;
