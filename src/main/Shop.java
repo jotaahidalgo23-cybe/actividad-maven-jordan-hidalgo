@@ -222,25 +222,28 @@ public class Shop {
 	 */
 	private void readInventory() {
 		System.out.println(System.getProperty("user.dir") + File.separator + "src" + File.separator + "model" + File.separator + "files" + File.separator + ITEMS_FILE);		
-		File f = new File(System.getProperty("user.dir") + File.separator + "files" + File.separator + ITEMS_FILE);
+		File f = new File("src" + File.separator + "model" + File.separator + "files" + File.separator + ITEMS_FILE);
 
 		// TODO RA1-ISSUE-03: obrir el fitxer, llegir-lo linia a linia i afegir cada producte a inventory.
 		try {
 			BufferedReader bf = new BufferedReader(new FileReader(f));
-			String Linea = "";
-			// while(Linea = bf.readLine() != null)
-			{
+			String Linea;
+			
+			while ((Linea = bf.readLine()) != null) {
+				Product product = parseProductLine(Linea);
 				
+				if (product !=null ) {
+					addProduct(product);
+				}
 			}
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			
+		} catch (IOException e) {
+			System.out.println("Error en llegir el fitxer: " + f.getPath());
 		}
 		
 		
 		// TODO RA1-ISSUE-04: delegar la conversio de cada linia a parseProductLine.
 		// TODO RA1-ISSUE-11: tractar fitxer absent o error de lectura amb un missatge comprensible.
-		System.out.println("RA1-ISSUE-03 pendent: encara no s'ha carregat " + f.getPath());
 	}
 
 	/**
@@ -248,9 +251,37 @@ public class Shop {
 	 */
 	private Product parseProductLine(String line) {
 		// TODO RA1-ISSUE-04: validar camps, convertir preu i estoc, i retornar un Product.
-		// TODO RA1-ISSUE-05: decidir com es tracten les linies mal formades.
-		return null;
+		String[] camps = line.split(";");
+		
+		//Aquí per comprovar que tenim els 3 camps necessaris per crear el producte.
+	    if (camps.length != 3) {
+	        System.out.println("Error: la linia no te tres camps");
+	        return null;
+	    }
+		
+		String[] clauValor = camps[0].split(":", 2);
+		String nom = clauValor[1];
+		
+		clauValor = camps[1].split(":",2);
+		double preu = Double.parseDouble(clauValor[1]);
+		
+		clauValor = camps[2].split(":",2);
+		int estoc;
+		
+		try {
+			estoc = Integer.parseInt(clauValor[1]);
+		} catch (NumberFormatException e) {
+			System.out.println("Error: en la part de l'estoc no es un numero");
+			return null;
+		}
+		
+		Product producte = new Product(nom, new Amount(preu), true, estoc);
+		return producte;
 	}
+		// TODO RA1-ISSUE-05: decidir com es tracten les linies mal formades.
+	
+		
+		
 
 	/**
 	 * Save the current inventory to items.txt.
