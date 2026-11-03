@@ -303,9 +303,30 @@ public class Shop {
 	 */
 	public void addProduct() {
 		// TODO RA1-ISSUE-06: demanar dades minimes, crear un Product i afegir-lo a inventory.
-		System.out.println("RA1-ISSUE-06 pendent: encara no es poden afegir articles.");
-	}
+		Scanner scanner = new Scanner (System.in);
+		
+		System.out.println("Introdueix el nom del producte:");
+		String nom = scanner.nextLine();
+		
+		System.out.println("Introdueix el preu:");
+		double preu = scanner.nextDouble();
+		
+		System.out.println("Introdueix l'estoc:");
+		int estoc = scanner.nextInt();
+		
+		if(isInventoryFull()) {
+		System.out.println("Error: l'inventory esta ple");
+		return;
+	
+		}
+		
+		Product producte = new Product(nom, new Amount(preu), true, estoc);
 
+		inventory.add(producte);
+		numberProducts++;
+	
+		System.out.println("Producte afegit correctament");
+	}
 	/**
 	 * remove a new product to inventory getting data from console
 	 */
@@ -318,10 +339,8 @@ public class Shop {
 	 * add stock for a specific product
 	 */
 	public void addStock() {
-		// TODO RA1-ISSUE-07: trobar un Product i actualitzar el seu estoc.
-		System.out.println("RA1-ISSUE-07 pendent: encara no es pot modificar l'estoc.");
 	}
-
+		// TODO RA1-ISSUE-07: trobar un Product i actualitzar el seu estoc.
 	/**
 	 * set a product as expired
 	 */
