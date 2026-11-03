@@ -221,27 +221,30 @@ public class Shop {
 	 * read inventory from file
 	 */
 	private void readInventory() {
-		System.out.println(System.getProperty("user.dir") + File.separator + "src" + File.separator + "model" + File.separator + "files" + File.separator + ITEMS_FILE);		
+		System.out.println(System.getProperty("user.dir") + File.separator + "src" + File.separator + "model"
+				+ File.separator + "files" + File.separator + ITEMS_FILE);
 		File f = new File("src" + File.separator + "model" + File.separator + "files" + File.separator + ITEMS_FILE);
 
-		// TODO RA1-ISSUE-03: obrir el fitxer, llegir-lo linia a linia i afegir cada producte a inventory.
+		// TODO RA1-ISSUE-03: obrir el fitxer, llegir-lo linia a linia i afegir cada
+		// producte a inventory.
 		try {
 			BufferedReader bf = new BufferedReader(new FileReader(f));
 			String Linea;
-			
+
 			while ((Linea = bf.readLine()) != null) {
 				Product product = parseProductLine(Linea);
-				
-				if (product !=null ) {
+
+				if (product != null) {
 					addProduct(product);
 				}
 			}
+		} catch (FileNotFoundException e) {
+			System.out.println("No s'ha trobat el fitxer d'inventari: " + f.getPath());
 			
 		} catch (IOException e) {
 			System.out.println("Error en llegir el fitxer: " + f.getPath());
 		}
-		
-		
+
 		// TODO RA1-ISSUE-04: delegar la conversio de cada linia a parseProductLine.
 		// TODO RA1-ISSUE-11: tractar fitxer absent o error de lectura amb un missatge comprensible.
 	}
