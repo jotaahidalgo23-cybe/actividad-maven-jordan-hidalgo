@@ -324,6 +324,7 @@ public class Shop {
 
 		inventory.add(producte);
 		numberProducts++;
+		saveInventory();
 	
 		System.out.println("Producte afegit correctament");
 	}
@@ -339,11 +340,32 @@ public class Shop {
 	 * add stock for a specific product
 	 */
 	public void addStock() {
-	}
 		// TODO RA1-ISSUE-07: trobar un Product i actualitzar el seu estoc.
-	/**
-	 * set a product as expired
-	 */
+		Scanner scanner = CONSOLE;
+		scanner.nextLine();
+
+		System.out.print("Introdueix el nom del producte: ");
+		String nom = scanner.nextLine().trim();
+		Product producte = findProduct(nom);
+
+		if (producte != null) {
+
+			System.out.println("El producte trobat: " + producte);
+			System.out.println("El estoc actual: " + producte.getStock());
+			System.out.print("Introdueix el nou estoc: ");
+
+			int estoc = scanner.nextInt();
+			producte.setStock(estoc);
+			saveInventory();
+
+			System.out.println("El estoc actualitzat correctament.");
+			System.out.println("Nou estoc: " + producte.getStock());
+
+		} else {
+			System.out.println("No s'ha trobat el producte: " + nom);
+		}
+	}
+	
 	private void setExpired() {
 		Scanner scanner = CONSOLE;
 		System.out.print("Seleccioneu un nom d'article: ");
